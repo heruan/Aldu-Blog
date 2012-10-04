@@ -20,7 +20,18 @@
 namespace Aldu\Blog\Models;
 use Aldu\Core;
 
-class Article extends Core\Model
+class Article extends Core\Locale\Localized
 {
-  
+  protected static $configuration = array(
+    'attributes' => array(
+      'title' => array(
+        'extension' => 'localized'
+      ),
+      'content' => array(
+        'extension' => 'localized'
+      )
+    )
+  );
+  public $title;
+  public $content;
 }
