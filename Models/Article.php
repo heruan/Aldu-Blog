@@ -23,12 +23,11 @@ use Aldu\Core;
 class Article extends Core\Locale\Localized
 {
   protected static $configuration = array(
-    'attributes' => array(
-      'title' => array(
-        'extension' => 'localized'
-      ),
-      'content' => array(
-        'extension' => 'localized'
+    'extensions' => array(
+      'localized' => array(
+        'attributes' => array(
+          'title' => true, 'content' => true
+        )
       )
     )
   );
