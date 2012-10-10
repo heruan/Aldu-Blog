@@ -31,6 +31,16 @@ class Article extends Core\Locale\Localized
       )
     )
   );
+
+  protected static $relations = array(
+    'belongs' => array(
+      'Aldu\Auth\Models\User' => array(
+        'author' => array(
+          'type' => 'boolean'
+        )
+      )
+    )
+  );
   public $title;
   public $content;
 }
