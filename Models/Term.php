@@ -31,6 +31,7 @@ class Term extends Core\Locale\Localized
       )
     )
   );
+  public $name;
   public $title;
   public $description;
 }
