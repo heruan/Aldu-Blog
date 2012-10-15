@@ -26,7 +26,8 @@ class Article extends Core\Locale\Localized
     'extensions' => array(
       'localized' => array(
         'attributes' => array(
-          'title' => true, 'content' => true
+          'title' => true,
+          'content' => true
         )
       )
     )
@@ -41,6 +42,16 @@ class Article extends Core\Locale\Localized
       )
     )
   );
+
+  protected static $attributes = array(
+    'summary' => array(
+      'type' => 'textarea'
+    ),
+    'content' => array(
+      'type' => 'textarea'
+    )
+  );
   public $title;
+  public $summary;
   public $content;
 }
