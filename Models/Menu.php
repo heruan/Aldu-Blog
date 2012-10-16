@@ -26,10 +26,8 @@ class Menu extends Core\Locale\Localized
   public $parent;
   public $uri;
   public $expand = 0;
-  public $acl = 'view';
   public $title;
   public $description;
-  public $class;
 
   protected static $attributes = array(
     'parent' => array(
