@@ -58,7 +58,7 @@ class Menu extends Core\View
       __METHOD__,
       $this->router->basePath,
       md5(serialize(func_get_args())),
-      md5(serialize($this->request->aro))
+      $this->request->aro ? md5(get_class($this->request->aro) . $this->request->aro->id) : null
     ));
     if (ALDU_CACHE_FAILURE === ($ul = $Cache->fetch($cache))) {
       $ul = new Helper\HTML('ul');
