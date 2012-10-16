@@ -61,7 +61,7 @@ class Menu extends Core\View
       $this->request->aro ? md5(get_class($this->request->aro) . $this->request->aro->id) : null
     ));
     if (ALDU_CACHE_FAILURE === ($ul = $Cache->fetch($cache))) {
-      $ul = new Helper\HTML('ul');
+      $ul = new Helper\HTML('ul.menu');
       foreach ($this->model->read(array(
         'name' => $name,
         'parent' => $parent

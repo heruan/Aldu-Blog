@@ -27,6 +27,7 @@ class Article extends Core\Locale\Localized
       'localized' => array(
         'attributes' => array(
           'title' => true,
+          'summary' => true,
           'content' => true
         )
       )
