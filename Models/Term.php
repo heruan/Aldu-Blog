@@ -22,7 +22,7 @@ use Aldu\Core;
 
 class Term extends Core\Locale\Localized
 {
-  protected static $configuration = array(
+  protected static $configuration = array(__CLASS__ => array(
     'extensions' => array(
       'localized' => array(
         'attributes' => array(
@@ -30,7 +30,7 @@ class Term extends Core\Locale\Localized
         )
       )
     )
-  );
+  ));
   public $name;
   public $title;
   public $description;
