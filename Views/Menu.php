@@ -49,6 +49,11 @@ class Menu extends Core\View
     return $Menu->view->build($block->name);
   }
 
+  public function view($menu)
+  {
+    return $this->build($menu->name, $menu->parent);
+  }
+  
   public function build($name, $parent = null)
   {
     $this->router->openContext($name);

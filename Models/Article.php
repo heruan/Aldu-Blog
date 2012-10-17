@@ -22,7 +22,7 @@ use Aldu\Core;
 
 class Article extends Core\Locale\Localized
 {
-  protected static $configuration = array(
+  protected static $configuration = array(__CLASS__ => array(
     'extensions' => array(
       'localized' => array(
         'attributes' => array(
@@ -32,7 +32,7 @@ class Article extends Core\Locale\Localized
         )
       )
     )
-  );
+  ));
 
   protected static $relations = array(
     'belongs' => array(
