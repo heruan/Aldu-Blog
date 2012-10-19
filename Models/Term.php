@@ -23,6 +23,7 @@ use Aldu\Core;
 class Term extends Core\Locale\Localized
 {
   protected static $configuration = array(__CLASS__ => array(
+    'label' => 'title',
     'extensions' => array(
       'localized' => array(
         'attributes' => array(
