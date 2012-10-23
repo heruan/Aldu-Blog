@@ -49,31 +49,38 @@ class Menu extends Core\View
     return $Menu->view->build($block->name);
   }
 
-  public function view($menu)
+  public function read($menu)
   {
-    return $this->build($menu->name, $menu->parent);
+    $build = $this->build($menu->name, $menu->id);
+    switch ($this->render) {
+      case 'page':
+      default:
+        $page = new Helper\HTML\Page();
+        $page->theme();
+        $page->title($menu->title);
+        $page->compose($build);
+        return $this->response->body($page);
+    }
   }
-  
+
   public function build($name, $parent = null)
   {
     $this->router->openContext($name);
     $Cache = Core\Cache::instance();
     $cache = implode('::', array(
+        uniqid(),
       get_class($this->model),
       __METHOD__,
       $this->router->basePath,
       md5(serialize(func_get_args())),
       $this->request->aro ? md5(get_class($this->request->aro) . $this->request->aro->id) : null
     ));
-    if (ALDU_CACHE_FAILURE === ($ul = $Cache->fetch($cache))) {
+    if (ALDU_CACHE_FAILURE === ($html = $Cache->fetch($cache))) {
       $ul = new Helper\HTML('ul.menu');
       foreach ($this->model->read(array(
         'name' => $name,
         'parent' => $parent
       )) as $menu) {
-        if (!$menu->authorized($this->request->aro, 'read')) {
-          continue;
-        }
         $li = $ul->li();
         foreach (explode(' ', $menu->class) as $class) {
           $li->addClass($class);
@@ -98,7 +105,10 @@ class Menu extends Core\View
           }
         }
       }
-      $Cache->store($cache, $ul);
+      $Cache->store($cache, $ul->save());
+    }
+    else {
+      $ul = new Helper\HTML($html);
     }
     $this->router->closeContext($name);
     return $ul;

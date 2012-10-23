@@ -29,6 +29,8 @@ class Menu extends Core\Locale\Localized
   public $title;
   public $description;
 
+  protected static $configuration = array(__CLASS__ => array('label' => 'title'));
+
   protected static $attributes = array(
     'parent' => array(
       'type' => __CLASS__
@@ -56,9 +58,7 @@ class Menu extends Core\Locale\Localized
       return false;
     }
     while ($menu->parent) {
-      $menu = $this->first(array(
-        'id' => $menu->parent
-      ));
+      $menu = Menu::instance($menu->parent->id);
       if ($this->id === $menu->id) {
         return true;
       }

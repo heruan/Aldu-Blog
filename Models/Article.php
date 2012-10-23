@@ -23,6 +23,9 @@ use Aldu\Core;
 class Article extends Core\Locale\Localized
 {
   protected static $configuration = array(__CLASS__ => array(
+    'datasource' => array(
+      'options' => array('sort' => array('updated' => 1)),
+    ),
     'extensions' => array(
       'localized' => array(
         'attributes' => array(
