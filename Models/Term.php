@@ -32,7 +32,10 @@ class Term extends Core\Locale\Localized
       )
     )
   ));
+
+  protected static $attributes = array('parent' => array('type' => __CLASS__), 'description' => 'textarea');
   public $name;
+  public $parent;
   public $title;
   public $description;
 }
