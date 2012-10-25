@@ -68,7 +68,6 @@ class Menu extends Core\View
     $this->router->openContext($name);
     $Cache = Core\Cache::instance();
     $cache = implode('::', array(
-        uniqid(),
       get_class($this->model),
       __METHOD__,
       $this->router->basePath,
@@ -76,7 +75,7 @@ class Menu extends Core\View
       $this->request->aro ? md5(get_class($this->request->aro) . $this->request->aro->id) : null
     ));
     if (ALDU_CACHE_FAILURE === ($html = $Cache->fetch($cache))) {
-      $ul = new Helper\HTML('ul.menu');
+      $ul = new Helper\HTML('ul.aldu-blog-view-menu.menu');
       foreach ($this->model->read(array(
         'name' => $name,
         'parent' => $parent

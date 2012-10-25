@@ -34,13 +34,13 @@ class Article extends Core\View
           'summary' => array(
             'type' => 'textarea',
             'attributes' => array(
-              'data-editor' => true
+              'data-editor' => 'ckeditor'
             )
           ),
           'content' => array(
             'type' => 'textarea',
             'attributes' => array(
-              'data-editor' => true
+              'data-editor' => 'ckeditor'
             )
           ),
           'locale',
