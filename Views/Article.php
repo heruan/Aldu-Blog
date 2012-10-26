@@ -20,6 +20,7 @@
 namespace Aldu\Blog\Views;
 use Aldu\Core;
 use Aldu\Core\View\Helper;
+use Aldu\Core\View\Helper\HTML;
 
 class Article extends Core\View
 {
@@ -76,6 +77,22 @@ class Article extends Core\View
       )
     )
   );
+
+  public function listview($articles = array())
+  {
+    $ul = new HTML('ul.aldu-core-view-listview');
+    $ul->data('role', 'listview');
+    foreach ($articles as $article) {
+      $li = $ul->li();
+      $a = $li->a(array(
+        'href' => $article->url()
+      ));
+      $a->h3($article->title);
+      $a->append($article->summary);
+      $a->append('p.ui-li-aside', $article->created->format(ALDU_DATETIME_FORMAT));
+    }
+    return $ul;
+  }
 
   public function read($article)
   {
