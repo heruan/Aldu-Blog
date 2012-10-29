@@ -18,7 +18,6 @@
  */
 
 namespace Aldu\Blog\Models;
-
 use Aldu\Core;
 
 class Menu extends Core\Locale\Localized
@@ -39,9 +38,11 @@ class Menu extends Core\Locale\Localized
   protected static $attributes = array(
     'parent' => array(
       'type' => 'self'
-    ), 'expand' => array(
+    ),
+    'expand' => array(
       'type' => 'boolean'
-    ), 'description' => array(
+    ),
+    'description' => array(
       'type' => 'textarea'
     )
   );
@@ -49,7 +50,8 @@ class Menu extends Core\Locale\Localized
   protected static $extensions = array(
     'localized' => array(
       'attributes' => array(
-        'title' => true, 'description' => true
+        'title' => true,
+        'description' => true
       )
     )
   );

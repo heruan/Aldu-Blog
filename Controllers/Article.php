@@ -22,5 +22,5 @@ use Aldu\Core;
 
 class Article extends Core\Controller
 {
-  
+
 }

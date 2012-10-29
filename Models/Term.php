@@ -18,17 +18,18 @@
  */
 
 namespace Aldu\Blog\Models;
-
 use Aldu\Core;
 
 class Term extends Core\Locale\Localized
 {
   protected static $configuration = array(
     __CLASS__ => array(
-      'label' => 'title', 'extensions' => array(
+      'label' => 'title',
+      'extensions' => array(
         'localized' => array(
           'attributes' => array(
-            'title' => true, 'description' => true
+            'title' => true,
+            'description' => true
           )
         )
       )
@@ -38,7 +39,8 @@ class Term extends Core\Locale\Localized
   protected static $attributes = array(
     'parent' => array(
       'type' => 'self'
-    ), 'description' => array(
+    ),
+    'description' => array(
       'type' => 'textarea'
     )
   );

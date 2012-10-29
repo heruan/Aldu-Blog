@@ -22,8 +22,8 @@ use Aldu\Core;
 
 class Menu extends Core\Controller
 {
-	public function sitemap($name)
-	{
-		return $this->view->sitemap($name);
-	}
+  public function sitemap($name)
+  {
+    return $this->view->sitemap($name);
+  }
 }

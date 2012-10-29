@@ -53,13 +53,13 @@ class Menu extends Core\View
   {
     $build = $this->build($menu->name, $menu->id);
     switch ($this->render) {
-      case 'page':
-      default:
-        $page = new Helper\HTML\Page();
-        $page->theme();
-        $page->title($menu->title);
-        $page->compose($build);
-        return $this->response->body($page);
+    case 'page':
+    default:
+      $page = new Helper\HTML\Page();
+      $page->theme();
+      $page->title($menu->title);
+      $page->compose($build);
+      return $this->response->body($page);
     }
   }
 
@@ -75,7 +75,7 @@ class Menu extends Core\View
       $this->request->aro ? md5(get_class($this->request->aro) . $this->request->aro->id) : null
     ));
     if (ALDU_CACHE_FAILURE === ($html = $Cache->fetch($cache))) {
-      $ul = new Helper\HTML('ul.aldu-blog-view-menu.menu');
+      $ul = new Helper\HTML('ul.aldu-blog-views-menu.menu');
       foreach ($this->model->read(array(
         'name' => $name,
         'parent' => $parent

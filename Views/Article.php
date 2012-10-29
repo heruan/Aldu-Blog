@@ -28,19 +28,23 @@ class Article extends Core\View
     __CLASS__ => array(
       'table' => array(
         'columns' => array(
-          'title', 'created', 'updated'
+          'title',
+          'created',
+          'updated'
         )
       ),
       'form' => array(
         'fields' => array(
           'title',
           'summary' => array(
-            'type' => 'textarea', 'attributes' => array(
+            'type' => 'textarea',
+            'attributes' => array(
               'data-editor' => 'ckeditor'
             )
           ),
           'content' => array(
-            'type' => 'textarea', 'attributes' => array(
+            'type' => 'textarea',
+            'attributes' => array(
               'data-editor' => 'ckeditor'
             )
           ),
@@ -70,7 +74,9 @@ class Article extends Core\View
                 'type' => 'select',
                 'options' => array(
                   'options' => array(
-                    'read' => 'read', 'edit' => 'edit', 'delete' => 'delete'
+                    'read' => 'read',
+                    'edit' => 'edit',
+                    'delete' => 'delete'
                   ),
                   'attributes' => array(
                     'multiple' => true

@@ -22,5 +22,5 @@ use Aldu\Core;
 
 class Term extends Core\Controller
 {
-  
+
 }
