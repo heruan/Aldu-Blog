@@ -27,20 +27,20 @@ class Article extends Core\View
   protected static $configuration = array(
     __CLASS__ => array(
       'table' => array(
-        'columns' => array('title', 'created', 'updated')
-       ),
+        'columns' => array(
+          'title', 'created', 'updated'
+        )
+      ),
       'form' => array(
         'fields' => array(
           'title',
           'summary' => array(
-            'type' => 'textarea',
-            'attributes' => array(
+            'type' => 'textarea', 'attributes' => array(
               'data-editor' => 'ckeditor'
             )
           ),
           'content' => array(
-            'type' => 'textarea',
-            'attributes' => array(
+            'type' => 'textarea', 'attributes' => array(
               'data-editor' => 'ckeditor'
             )
           ),
@@ -59,13 +59,19 @@ class Article extends Core\View
         'belongs' => array(
           'groups' => array(
             'model' => 'Aldu\Auth\Models\Group',
-            'fieldset' => true,
+            'fieldset' => array(
+              'attributes' => array(
+                'class' => 'collapsed'
+              )
+            ),
             'type' => 'checkbox',
             'relation' => array(
               'acl' => array(
                 'type' => 'select',
                 'options' => array(
-                  'options' => array('read' => 'read', 'edit' => 'edit', 'delete' => 'delete'),
+                  'options' => array(
+                    'read' => 'read', 'edit' => 'edit', 'delete' => 'delete'
+                  ),
                   'attributes' => array(
                     'multiple' => true
                   )
@@ -94,17 +100,27 @@ class Article extends Core\View
     return $ul;
   }
 
-  public function read($article)
+  public function read($model, $options = array())
   {
-    parent::read($article);
-    switch ($this->render) {
+    $options = array_merge(array(
+      'render' => $this->render
+    ), $options);
+    extract($options);
+    parent::read($model, $options);
+    switch ($render) {
+    case 'pdf':
+      $pdf = Utility\Shell::exec('pandoc -t pdf', $model->content);
+      $this->response->type('pdf');
+      return $this->response->body($pdf);
     case 'page':
     default:
       $page = new Helper\HTML\Page();
       $page->theme();
-      $page->title($article->title);
-      $content = new Helper\HTML('article.aldu-blog-views-article', $article->content);
-      $page->compose($content);
+      $page->title($model->title);
+      $article = new Helper\HTML('article.aldu-blog-views-article');
+      $article->append('section.aldu-blog-views-article-summary')->append($model->summary);
+      $article->append('section.aldu-blog-views-article-content')->append($model->content);
+      $page->compose($article);
       return $this->response->body($page);
     }
   }
