@@ -25,4 +25,17 @@ use Aldu\Core\View\Helper;
 
 class Term extends Core\View
 {
+  protected static $configuration = array(
+    __CLASS__ => array(
+      'form' => array(
+        'fields' => array(
+          'parent',
+          'title',
+          'description',
+          'locale',
+          'name'
+        )
+      )
+    )
+  );
 }

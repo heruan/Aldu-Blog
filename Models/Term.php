@@ -19,11 +19,19 @@
 
 namespace Aldu\Blog\Models;
 use Aldu\Core;
+use Aldu\Core\Utility\Inflector;
 
 class Term extends Core\Locale\Localized
 {
   protected static $configuration = array(
     __CLASS__ => array(
+      'datasource' => array(
+        'options' => array(
+          'sort' => array(
+            'title' => 1
+          )
+        ),
+      ),
       'label' => 'title',
       'extensions' => array(
         'localized' => array(
@@ -48,4 +56,12 @@ class Term extends Core\Locale\Localized
   public $parent;
   public $title;
   public $description;
+
+  public function save()
+  {
+    if (!$this->name) {
+      $this->name = Inflector::slug($this->title);
+    }
+    return parent::save();
+  }
 }
